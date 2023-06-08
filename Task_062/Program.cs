@@ -13,7 +13,7 @@ void Main()
     int row = ReadInt("Enter number of rows in genarating array: ");
     int column = ReadInt("Enter number of columns in genarating array: ");
     int[,] matrix = FillMatrix(row, column, 0);
-    PrintMatrix(matrix);
+    // PrintMatrix(matrix);
     System.Console.WriteLine();
     PrintMatrix(ArrayNumbering(matrix, row, column, 0));
 
@@ -42,55 +42,34 @@ int[,] FillMatrix(int row, int col, int n)
 
 int[,] ArrayNumbering(int[,] arr, int row, int column, int N)
 {
-    int i = 0;
-    int j = 0;
-    while (j <= column - 1)
-    {
-        arr[i, j] = N + 1; N++; j++;
-    }
+    int remainder = row * column % 2;
 
-    i = 1;
-    j = column - 1;
-    while (i <= row - 1)
-    {
-        arr[i, j] = N + 1; N++; i++;
-    }
+    if (remainder % 2 != 0) remainder = 1;
+    int circle = row * column / 4 + remainder;
+    
 
-    i = row - 1;
-    j = column - 2;
-    while (j >= 0)
+    for (int k = 0; k < circle; k++)
     {
-        arr[i, j] = N + 1; N++; j--;
-    }
+        int i = k;
+        int j = k;
+        while (j <= column - (1 + k))
+        { arr[i, j] = N + 1; N++; j++; }
 
-    i = row - 2;
-    j = 0;
-    while (i >= 1)
-    {
-        arr[i, j] = N + 1; N++; i--;
-    }
+        i = (1 + k);
+        j = column - (1 + k);
+        while (i <= row - (1 + k))
+        { arr[i, j] = N + 1; N++; i++; }
 
-    i = 1;
-    j = 1;
-    while (j <= column - 2)
-    {
-        arr[i, j] = N + 1; N++; j++;
-    }
+        i = row - (1 + k);
+        j = column - (2 + k);
+        while (j >= k)
+        { arr[i, j] = N + 1; N++; j--; }
 
-    i = 2;
-    j = column - 2;
-    while (i <= row - 2)
-    {
-        arr[i, j] = N + 1; N++; i++;
+        i = row - (2 + k);
+        j = k;
+        while (i >= (1 + k))
+        { arr[i, j] = N + 1; N++; i--; }
     }
-
-    i = row - 2;
-    j = column - 3;
-    while (j >= 1)
-    {
-        arr[i, j] = N + 1; N++; j--;
-    }
-
     return arr;
 }
 
