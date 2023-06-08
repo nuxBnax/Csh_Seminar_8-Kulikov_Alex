@@ -11,8 +11,8 @@
 
 void Main()
 {
-    int row = ReadInt("Enter number of rows in first genarating array: ");
-    int column = ReadInt("Enter number of columns in first genarating array: ");
+    int row = ReadInt("Enter number of rows in genarating arrays: ");
+    int column = ReadInt("Enter number of columns in genarating arrays: ");
     int[,] matrix = FillMatrix(row, column, 0, 10);
     // int rowTwo = ReadInt("Enter number of rows in second genarating array: ");
     // int columnTwo = ReadInt("Enter number of columns in second genarating array: ");
@@ -76,10 +76,5 @@ int[,] MatrixMult(int[,] array, int[,] arrayTwo, int row, int column)
     return arraySum;
 }
 
-
-// void PrintMatrixMult(int[] matrixSum)
-// {
-//     System.Console.WriteLine("Average of each column: " + string.Join("; ", matrixSum));
-// }
 
 Main();
